@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дополнительные услуги — Kids Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --yellow: #FFC107;
+    --orange: #FF8C00;
+    --purple: #8B7BB5;
+    --purple-light: #B8A9D9;
+    --purple-bg: #9B8DC0;
+    --text: #333333;
+    --text-light: #666666;
+    --bg-cream: #FFF9EE;
+    --bg-yellow-light: #FFF3D0;
+    --white: #ffffff;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  body { font-family: 'Nunito Sans', sans-serif; color: var(--text); background: #fff; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .topbar { background: #fff; padding: 6px 60px; display: flex; justify-content: flex-end; gap: 32px; font-size: 13px; color: var(--text-light); }
+  .topbar strong { color: var(--orange); font-weight: 700; }
+
+  header {
+    background: #fff; padding: 0 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px; border-bottom: 1px solid #f0f0f0;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .logo { display: flex; align-items: center; font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; color: #FF8C00; }
+  .logo img { height: 48px; }
+  nav { display: flex; align-items: center; gap: 28px; }
+  .nav-item { font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 4px 0; border-bottom: 2px solid transparent; transition: border-color 0.2s, color 0.2s; }
+  .nav-item:hover, .nav-item.active { color: var(--orange); border-bottom-color: var(--orange); }
+  .nav-item .arrow { font-size: 10px; margin-top: 1px; color: var(--text-light); }
+  .nav-item.active .arrow { color: var(--text-light); }
+  a.nav-item { text-decoration: none; color: inherit; }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .phone-block .phone { font-size: 20px; font-weight: 800; white-space: nowrap; }
+  .phone-block .callback { font-size: 12px; color: var(--orange); cursor: pointer; text-decoration: underline; }
+  .social-icons { display: flex; gap: 8px; }
+  .social-icons a { width: 32px; height: 32px; border-radius: 50%; background: #f3f3f3; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: background 0.2s; }
+  .social-icons a:hover { background: var(--purple-light); color: #fff; }
+  .btn-excursion { background: var(--purple-bg); color: #fff; padding: 10px 22px; border-radius: 30px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-excursion:hover { background: #7a6ba8; }
+
+  .breadcrumb { padding: 14px 60px; font-size: 13px; color: var(--text-light); }
+  .breadcrumb a { color: var(--text-light); }
+  .breadcrumb a:hover { color: var(--orange); }
+  .breadcrumb .sep { margin: 0 6px; }
+  .breadcrumb .current { color: var(--orange); font-weight: 600; }
+
+  .page-title { padding: 0 60px 32px; font-family: 'Nunito', sans-serif; font-size: 38px; font-weight: 900; color: var(--purple); }
+
+
+  .services-section { padding: 0 60px 60px; }
+  .services-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-big-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-big-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  .service-big-card .card-img {
+    width: 100%; aspect-ratio: 4/3; overflow: hidden;
+  }
+  .service-big-card .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .service-big-card:hover .card-img img { transform: scale(1.05); }
+  .service-big-card .card-label {
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+    background: #FFF9EE;
+  }
+  .card-label-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .card-label-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+
+  .card-placeholder {
+    background: #D8CCF0;
+    aspect-ratio: 4/3;
+  }
+
+
+  .wave-section { background: var(--bg-yellow-light); padding: 40px 60px; }
+  .wave-top { width: 100%; height: 50px; background: #fff; position: relative; }
+  .wave-top::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 50px;
+    background: var(--bg-yellow-light);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .info-item { display: flex; align-items: center; gap: 14px; background: #fff; padding: 14px 18px; border-radius: var(--radius-sm); }
+  .info-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+  .icon-yellow { background: #FFF3D0; }
+  .icon-purple { background: #EDE9F5; }
+  .info-item-text { font-size: 13px; line-height: 1.4; }
+  .info-item-text strong { font-weight: 700; }
+  .info-item-text span { color: var(--text-light); }
+
+  .cta-section { padding: 48px 60px; }
+  .cta-banner { background: var(--purple-bg); border-radius: var(--radius); padding: 48px 52px; display: flex; align-items: center; gap: 40px; position: relative; overflow: hidden; color: #fff; }
+  .cta-banner-text { flex: 1; z-index: 2; }
+  .cta-banner-text h2 { font-family: 'Nunito', sans-serif; font-size: 32px; font-weight: 900; margin-bottom: 10px; line-height: 1.2; }
+  .cta-banner-text p { font-size: 15px; opacity: 0.9; margin-bottom: 20px; }
+  .cta-form { display: flex; gap: 12px; align-items: center; }
+  .cta-form input { padding: 12px 16px; border-radius: 8px; border: none; font-size: 14px; outline: none; min-width: 220px; background: rgba(255,255,255,0.15); color: #fff; }
+  .cta-form input::placeholder { color: rgba(255,255,255,0.6); }
+  .btn-submit { background: var(--yellow); color: var(--text); padding: 12px 28px; border-radius: 8px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; }
+  .cta-banner-img { width: 260px; flex-shrink: 0; z-index: 2; }
+  .cta-banner-img img { width: 100%; border-radius: 8px; }
+  .privacy-note { font-size: 11px; opacity: 0.7; margin-top: 8px; }
+  .cta-shape { position: absolute; border-radius: 50%; opacity: 0.7; }
+
+
+  .map-placeholder { width: 100%; height: 320px; background: #e8ece8; position: relative; overflow: hidden; }
+  .map-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+  .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-100%); font-size: 40px; color: var(--purple); }
+
+
+  footer { background: #fff; padding: 48px 60px 24px; border-top: 1px solid #f0f0f0; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+  .footer-logo { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: var(--orange); margin-bottom: 12px; }
+  .footer-contact { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+  .footer-contact .big-phone { font-size: 22px; font-weight: 800; color: var(--text); }
+  .footer-contact a { color: var(--orange); }
+  .footer-social { display: flex; gap: 10px; margin-top: 12px; }
+  .footer-social a { width: 32px; height: 32px; border-radius: 50%; background: #f3f3f3; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .footer-col h4 { font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { font-size: 13px; color: var(--text-light); margin-bottom: 6px; }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-bottom { border-top: 1px solid #f0f0f0; padding-top: 16px; display: flex; justify-content: space-between; }
+  .footer-bottom p { font-size: 12px; color: #bbb; }
+  .footer-bottom a { font-size: 12px; color: var(--orange); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: transparent; z-index: 201; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--purple-bg); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 40px 24px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-close { position: absolute; top: 18px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; background: none; border: none; }
+  .mobile-menu a { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
+  .mobile-menu .mob-btn { margin-top: 8px; background: #fff; color: var(--purple-bg); padding: 13px 32px; border-radius: 30px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px; border: none; cursor: pointer; }
+  .mobile-menu .mob-phone { font-size: 18px; font-weight: 800; color: #fff; }
+
+  @media (max-width: 768px) {
+    .topbar { display: none; }
+    header { height: 60px; padding: 0 16px; }
+    .logo img { height: 38px; }
+    nav { display: none; }
+    .header-right { display: none; }
+    .hamburger { display: flex; }
+
+    .breadcrumb { padding: 10px 16px; }
+    .page-title { padding: 0 16px 18px; font-size: 26px; }
+
+    .services-section { padding: 0 16px 36px; }
+    .services-cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card-label-text { font-size: 12px; }
+
+    .wave-section { padding: 28px 16px; }
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .info-item { padding: 10px 12px; gap: 10px; }
+    .info-icon { width: 36px; height: 36px; font-size: 18px; }
+    .info-item-text { font-size: 12px; }
+
+    .cta-section { padding: 20px 16px; }
+    .cta-banner { flex-direction: column; padding: 28px 20px; gap: 20px; }
+    .cta-banner-text h2 { font-size: 22px; }
+    .cta-banner-text p { font-size: 14px; }
+    .cta-form { flex-direction: column; gap: 10px; }
+    .cta-form input { min-width: 0; width: 100%; }
+    .cta-banner-img { width: 140px; align-self: flex-end; margin-top: -36px; }
+
+    .map-placeholder { height: 220px; }
+
+    footer { padding: 28px 16px 20px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .footer-top > div:first-child { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .services-cards { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-top > div:first-child { grid-column: 1; }
+    .cta-banner-text h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="#">Москва, ул. Муравская д.38, к.1</a>
+  <a href="#"><strong>ЖК Мир Митино</strong> М. Пятницкое шоссе</a>
+</div>
+
+<header>
+    <a href="index.html" class="logo">
+        Kidsstory
+    </a>
+  <nav>
+    <a href="index.html" class="nav-item">О нас <span class="arrow">▾</span></a>
+    <a href="raspisanie.html" class="nav-item">Расписание <span class="arrow">▾</span></a>
+    <a href="services.html" class="nav-item active">Программа <span class="arrow">▾</span></a>
+    <a href="index.html#foto-video" class="nav-item">Фото и видео</a>
+    <a href="index.html#komanda" class="nav-item">Команда</a>
+    <a href="index.html#kontakty" class="nav-item">Контакты</a>
+  </nav>
+  <div class="header-right">
+    <div class="phone-block">
+      <div class="phone">📞 +7 495 123 34 25</div>
+      <div class="callback">Заказать обратный звонок</div>
+    </div>
+    <div class="social-icons">
+      <a href="#">ВК</a>
+      <a href="#">✈</a>
+    </div>
+    <button class="btn-excursion">Записаться на экскурсию</button>
+  </div>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html" onclick="toggleMenu()">О нас</a>
+  <a href="raspisanie.html" onclick="toggleMenu()">Расписание</a>
+  <a href="services.html" onclick="toggleMenu()">Программа</a>
+  <a href="index.html#foto-video" onclick="toggleMenu()">Фото и видео</a>
+  <a href="index.html#komanda" onclick="toggleMenu()">Команда</a>
+  <a href="index.html#kontakty" onclick="toggleMenu()">Контакты</a>
+  <button class="mob-btn" onclick="toggleMenu()">Записаться на экскурсию</button>
+  <div class="mob-phone">📞 +7 495 123 34 25</div>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">Главная</a><span class="sep">›</span><span class="current">Программа</span>
+</div>
+
+<h1 class="page-title">Программа</h1>
+
+<div class="services-section">
+  <div class="services-cards">
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_28_yoga_1.png" alt="Йога"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🧘</div>
+        <div class="card-label-text">Йога</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_29_montessori_1.png" alt="Монтессори"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🪵</div>
+        <div class="card-label-text">Монтессори группа с уникальным древесинным оборудованием</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_30_teaching_golf_to_children_1.png" alt="Гольф"></div>
+      <div class="card-label">
+        <div class="card-label-icon">⛳</div>
+        <div class="card-label-text">Гольф для малышей</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_32_lego_1.png" alt="Легостроение"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🧱</div>
+        <div class="card-label-text">Легостроение и конструирование</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_33_UylvXOx9iqM_1.png" alt="Тестопластика"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🎨</div>
+        <div class="card-label-text">Тестопластика и глинопластика</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_34_zanyatiya-po-vokalu_1.png" alt="Риторика"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🎤</div>
+        <div class="card-label-text">Риторика и ораторское мастерство</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_35_182e3f122eae409e4bd3b1d00313d702_1.png" alt="Скалолазание"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🧗</div>
+        <div class="card-label-text">Занятия по скалолазанию</div>
+      </div>
+    </div>
+
+  
+    <div class="service-big-card">
+        <!--<div class="card-img card-placeholder"></div>-->
+        <div class="card-img"><img src="images/img_1_photo_2021-11-25_07-41-41-1024x1024_1.png" alt="Песочная терапия"></div>
+        <div class="card-label">
+            <div class="card-label-icon">🎭</div>
+            <div class="card-label-text">Театрализация на английском языке</div>
+        </div>
+    </div>
+
+    <div class="service-big-card">
+        <!--<div class="card-img card-placeholder"></div>-->
+        <div class="card-img"><img src="images/R.jpg" alt="Песочная терапия"></div>
+        <div class="card-label">
+            <div class="card-label-icon">🍽</div>
+            <div class="card-label-text">Кулинария и этикет сервисного стола</div>
+        </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_37_hello_html_m3166ba9d_1.png" alt="Песочная терапия"></div>
+      <div class="card-label">
+        <div class="card-label-icon">📊</div>
+        <div class="card-label-text">Песочная терапия. Работа на интерактивных столах и досках</div>
+      </div>
+    </div>
+
+    <div class="service-big-card">
+      <div class="card-img"><img src="images/img_38_f06593775fca9f4417f3501119f7f6a3_1.png" alt="Беговелы"></div>
+      <div class="card-label">
+        <div class="card-label-icon">🚴</div>
+        <div class="card-label-text">Занятия с беговелами</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="background: var(--bg-yellow-light); padding: 40px 60px;">
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="info-icon icon-yellow">🕐</div>
+      <div class="info-item-text"><strong>Часы работы:</strong> <span>с 7:00 до 19:00</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-purple">👥</div>
+      <div class="info-item-text"><strong>Группы:</strong> <span>до 15 человек</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-yellow">🏃</div>
+      <div class="info-item-text"><strong>Площадка для прогулок:</strong> <span>собственная оборудованная территория</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-purple">📹</div>
+      <div class="info-item-text"><strong>Видеонаблюдение:</strong> <span>онлайн</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-yellow">💬</div>
+      <div class="info-item-text"><strong>Англоязычная среда:</strong> <span>билингвал / экспат</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-purple">👶</div>
+      <div class="info-item-text"><strong>Возраст детей:</strong> <span>с 1,5 до 7 лет</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-yellow">💊</div>
+      <div class="info-item-text"><strong>Утренний фильтр медработником:</strong> <span>ежедневно</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-purple">🏠</div>
+      <div class="info-item-text"><strong>Помещение:</strong> <span>800 кв.м</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon icon-yellow">🍽</div>
+      <div class="info-item-text"><strong>Питание:</strong> <span>5-разовое, с учётом индивидуальных особенностей ребёнка</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="cta-banner">
+    <div class="cta-banner-text">
+      <h2>Есть вопросы? Получите<br>бесплатную консультацию</h2>
+      <p>Оставьте телефон и мы перезвоним<br>и расскажем все подробности о филиале</p>
+      <div class="cta-form">
+        <input type="tel" placeholder="+7-___-___-__-__">
+        <button class="btn-submit">ОТПРАВИТЬ</button>
+      </div>
+      <p class="privacy-note">● Я принимаю условия <a href="#" style="color:#fff;">пользовательского соглашения</a></p>
+    </div>
+    <div class="cta-banner-img">
+      <img src="images/img_0_photo_2021-11-25_07-21-39-768x476_1.png" alt="Ребёнок">
+    </div>
+  </div>
+</div>
+
+<div class="map-placeholder">
+  <img src="images/img_4_Mapsicle_Map.png" alt="Карта">
+  <div class="map-pin">📍</div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">kids störy</div>
+      <div class="footer-contact">
+        <div class="big-phone">📞 +7 495 123 34 25</div>
+        <div style="margin-top:6px;">dir@kidsstory.life</div>
+        <div style="margin-top:6px;">Москва, ул. Муравская д.38, к.1<br><a href="#">ЖК Мир Митино М. Пятницкое шоссе</a></div>
+        <div class="footer-social">
+          <a href="#">ВК</a>
+          <a href="#">✈</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>О нас</h4>
+      <ul>
+        <li><a href="index.html">О центре</a></li>
+        <li><a href="#">Документы</a></li>
+        <li><a href="#">Родителям</a></li>
+        <li><a href="#">Питание</a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">3D тур</a></li>
+        <li><a href="index.html#otzyvy">Отзывы</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Расписание</h4>
+      <ul>
+        <li><a href="raspisanie.html">Расписание основное</a></li>
+        <li><a href="services.html">Дополнительные услуги</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Программа</h4>
+      <ul>
+        <li><a href="#">Группа (2-3 года)</a></li>
+        <li><a href="#">Группа (3-5 лет)</a></li>
+        <li><a href="#">Группа (5-7 лет)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col"><h4>Фото и видео</h4></div>
+    <div class="footer-col"><h4>Команда</h4></div>
+    <div class="footer-col"><h4>Контакты</h4></div>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyrights: Kids Story 2021</p>
+    <a href="#">Дизайн: ZHURAVLEV</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById("mobileMenu");
+  var h=document.getElementById("ham");
+  m.classList.toggle("open");
+  h.classList.toggle("open");
+  document.body.style.overflow=m.classList.contains("open")?"hidden":"";
+}
+</script>
+</body>
+</html>

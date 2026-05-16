@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Расписание — Kids Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="#">Москва, ул. Муравская д.38, к.1</a>
+  <a href="#"><strong>ЖК Мир Митино</strong> М. Пятницкое шоссе</a>
+</div>
+
+<header>
+    <a href="index.html" class="logo">
+        Kidsstory
+    </a>
+  <nav>
+    <a href="index.html" class="nav-item">О нас <span class="arrow">▾</span></a>
+    <a href="raspisanie.html" class="nav-item active">Расписание <span class="arrow">▾</span></a>
+    <a href="services.html" class="nav-item">Программа <span class="arrow">▾</span></a>
+    <a href="index.html#foto-video" class="nav-item">Фото и видео</a>
+    <a href="index.html#komanda" class="nav-item">Команда</a>
+    <a href="index.html#kontakty" class="nav-item">Контакты</a>
+  </nav>
+  <div class="header-right">
+    <div class="phone-block">
+      <div class="phone">📞 +7 495 123 34 25</div>
+      <div class="callback">Заказать обратный звонок</div>
+    </div>
+    <div class="social-icons">
+      <a href="#" title="ВКонтакте">ВК</a>
+      <a href="#" title="Telegram">✈</a>
+    </div>
+    <button class="btn-excursion" type="button">Записаться на экскурсию</button>
+  </div>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html" onclick="toggleMenu()">О нас</a>
+  <a href="raspisanie.html" onclick="toggleMenu()">Расписание</a>
+  <a href="services.html" onclick="toggleMenu()">Программа</a>
+  <a href="index.html#foto-video" onclick="toggleMenu()">Фото и видео</a>
+  <a href="index.html#komanda" onclick="toggleMenu()">Команда</a>
+  <a href="index.html#kontakty" onclick="toggleMenu()">Контакты</a>
+  <button class="mob-btn" onclick="toggleMenu()">Записаться на экскурсию</button>
+  <div class="mob-phone">📞 +7 495 123 34 25</div>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">Главная</a><span class="sep">›</span><span class="current">Расписание</span>
+</div>
+
+<h1 class="page-title">Расписание</h1>
+<p class="page-intro">
+  Ниже — ориентировочный режим дня для групп Kids Story (понедельник–пятница). Точное расписание вашей группы и дополнительных студий уточняйте у администратора.
+  Раздел «Программа» содержит описание направлений и возрастных групп.
+</p>
+
+<section class="schedule-section">
+  <h2 class="schedule-block-title">Режим дня (будни)</h2>
+  <div class="schedule-wrap">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th class="col-time">Время</th>
+          <th>Занятия и активности</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-time">07:00 – 09:00</td>
+          <td>
+            <strong>Приём детей, свободная игра</strong>
+            <div class="muted">Адаптация, общение со сверстниками, настольные игры.</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">09:00 – 09:30</td>
+          <td>
+            <strong>Завтрак</strong>
+            <div class="muted">Сбалансированное пятикратное питание по меню.</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">09:30 – 10:30</td>
+          <td>
+            <strong>Развивающие занятия</strong>
+            <div class="muted">Логика, речь, сенсорика, английский язык (погружение).</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">10:30 – 11:00</td>
+          <td><strong>Полдник</strong></td>
+        </tr>
+        <tr>
+          <td class="col-time">11:00 – 12:30</td>
+          <td>
+            <strong>Прогулка / спорт</strong>
+            <div class="muted">Собственная площадка, подвижные игры, веломобили.</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">12:30 – 13:30</td>
+          <td><strong>Обед</strong></td>
+        </tr>
+        <tr>
+          <td class="col-time">13:30 – 15:30</td>
+          <td>
+            <strong>Тихий час / сон</strong>
+            <div class="muted">Индивидуальный режим для малышей, не спящих — спокойные занятия.</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">15:30 – 16:00</td>
+          <td><strong>Полдник</strong></td>
+        </tr>
+        <tr>
+          <td class="col-time">16:00 – 17:30</td>
+          <td>
+            <strong>Творчество, музыка, проекты</strong>
+            <div class="muted">Мастер-классы, театрализация, эксперименты — по календарю недели.</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-time">17:30 – 18:00</td>
+          <td><strong>Ужин</strong></td>
+        </tr>
+        <tr>
+          <td class="col-time">18:00 – 19:00</td>
+          <td>
+            <strong>Свободная игра, выдача детей родителям</strong>
+            <div class="muted">Работа центра до 19:00.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="schedule-block-title">Дополнительные студии</h2>
+  <p class="page-intro" style="padding: 0 0 16px;">Кружки по записи; дни и время могут отличаться от группы к группе. Полный список направлений — на странице «Программа».</p>
+  <div class="schedule-wrap">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th class="col-time">День</th>
+          <th>Пример слотов</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-time">Пн / Ср</td>
+          <td>Йога для малышей · Легостроение · Английский клуб</td>
+        </tr>
+        <tr>
+          <td class="col-time">Вт / Чт</td>
+          <td>Монтессори-студия · Риторика · Скалодром (адаптированный)</td>
+        </tr>
+        <tr>
+          <td class="col-time">Пт</td>
+          <td>Гольф для малышей · Творческая мастерская · Подготовка к школе (старшая группа)</td>
+        </tr>
+        <tr>
+          <td class="col-time">Сб</td>
+          <td><span class="muted">По расписанию выходного дня — уточняйте в офисе.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="cta-wrap-outer" style="padding: 48px 60px; background: #fff;">
+  <div class="cta-banner">
+    <div class="cta-shape-1"></div>
+    <div class="cta-shape-2"></div>
+    <div class="cta-shape-3"></div>
+    <div class="cta-triangle"></div>
+    <div class="cta-banner-text">
+      <h2>Нужна консультация по группе?</h2>
+      <p>Оставьте телефон — подскажем подходящее расписание и свободные места.</p>
+      <div class="cta-form">
+        <input type="tel" placeholder="+7-___-___-__-__">
+        <button class="btn-submit" type="button" style="width:auto;padding:12px 28px;">ОТПРАВИТЬ</button>
+      </div>
+      <p class="privacy-note">● Я принимаю условия <a href="#">пользовательского соглашения</a></p>
+    </div>
+    <div class="cta-banner-img">
+      <img src="images/img_6_Positive_curious_schoolboy_in_casual_wear_looking_.png" alt="Ребёнок">
+    </div>
+  </div>
+</div>
+
+<div class="map-section" id="kontakty">
+  <div class="map-placeholder">
+    <img src="images/img_4_Mapsicle_Map.png" alt="Карта">
+    <div class="map-pin">📍</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">kids störy</div>
+      <div class="footer-contact">
+        <div class="big-phone">+7 495 123 34 25</div>
+        <div style="margin-top:6px;">dir@kidsstory.life</div>
+        <div style="margin-top:6px;">Москва, ул. Муравская д.38, к.1<br><a href="#">ЖК Мир Митино М. Пятницкое шоссе</a></div>
+        <div class="footer-social">
+          <a href="#" title="ВКонтакте">ВК</a>
+          <a href="#" title="Telegram">✈</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>О нас</h4>
+      <ul>
+        <li><a href="index.html">О центре</a></li>
+        <li><a href="#">Документы</a></li>
+        <li><a href="#">Родителям</a></li>
+        <li><a href="#">Питание</a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">3D тур</a></li>
+        <li><a href="index.html#otzyvy">Отзывы</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Расписание</h4>
+      <ul>
+        <li><a href="raspisanie.html">Расписание основное</a></li>
+        <li><a href="services.html">Дополнительные услуги</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Программа</h4>
+      <ul>
+        <li><a href="services.html">Группа (2-3 года)</a></li>
+        <li><a href="services.html">Группа (3-5 лет)</a></li>
+        <li><a href="services.html">Группа (5-7 лет)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Фото и видео</h4>
+      <ul>
+        <li><a href="index.html#foto-video">Галерея</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Команда</h4>
+      <ul>
+        <li><a href="index.html#komanda">Педагоги</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <ul>
+        <li><a href="index.html#kontakty">Как добраться</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyrights: Kids Story 2021</p>
+    <a href="#">Дизайн: ZHURAVLEV</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById("mobileMenu");
+  var h=document.getElementById("ham");
+  m.classList.toggle("open");
+  h.classList.toggle("open");
+  document.body.style.overflow=m.classList.contains("open")?"hidden":"";
+}
+</script>
+</body>
+</html>
